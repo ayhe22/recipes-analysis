@@ -25,14 +25,14 @@ Dataset 2, `interactions`, has **731927 rows**, representing online interactions
 
 The two datasets were cleaned and merged for further analysis.
 
-## Data Cleaning & Exploratory Data Analysis
+## Data Cleaning/Exploratory Data Analysis
 
 ### Data Cleaning
 
 To aid in my analysis, I performed the following data cleaning steps on the two datasets:
 - I first performed a "left merge" on the `recipes` and `interactions` datasets, using the `id` column for `recipes` and the `recipe_id` column for `interactions`. This step allowed me to consolidate the two datasets, dropping all user interactions that did not correspond to recipes in the `recipes` dataset.
 - I then dropped all columns that wouldn't be used in my analysis, keeping only the `id`, `minutes`, `tags`, `nutrition`, `n_steps`, `n_ingredients`, and `rating` columns.
-- In the `rating` column, I replaced all values of `0` with `np.nan`. Since ratings only range from `1` to `5`, a value of `0` is not a valid submission and likely indicates that no ratings were actually submitted. Therefore, replacing any ratings of `0` ensures that they will not be included in any aggregate measures performed on the `ratings` column.
+- In the `rating` column, I replaced all values of 0 with `np.nan`. Since ratings only range from 1 to 5, a value of 0 is not a valid submission and likely indicates that no ratings were actually submitted. Therefore, replacing any ratings of 0 ensures that they will not be included in any aggregate measures performed on the `ratings` column.
 - I calculated the mean rating of each recipe, storing the information in a new column titled `avg_rating`. I also dropped the original `rating` column, since I would only be using the average rating in future analyses.
 - My next step was to groupby the `id` column and take the "max" value within all columns. The merge step created one row for each interaction with a recipe in the `recipes` dataset, and since I wouldn't be looking at individual interactions in my analysis, I wanted to compress my dataframe so that each recipe is only represented in one row. The resulting dataframe once again consists 83782 rows, representing the 83782 unique recipes in the dataset.
 - Since the `tags` and `nutrition` columns were both represented as one long string, I extracted the relevant information from the strings by splitting on the comma character, storing the result as a list of strings.
@@ -53,6 +53,7 @@ After all steps were completed, the cleaned dataframe appears as follows:
 | 275026 |        45 | ['60-minutes-or-less', 'time-to-make', 'course', 'main-ingredient', 'preparation', 'very-low-carbs', 'main-dish', 'eggs-dairy', 'seafood', 'crab', 'cheese', 'dietary', 'low-sodium', 'low-calorie', 'low-carb', 'low-in-something', 'shellfish']                                                                                       | ['326.6', '30.0', '12.0', '27.0', '37.0', '51.0', '5.0']   |         7 |               9 |            3 |          326.6 |              30 |          12 |           27 |            37 |                  51 |                   5 |
 | 275030 |        45 | ['60-minutes-or-less', 'time-to-make', 'course', 'preparation', 'occasion', 'desserts', 'cheesecake', 'gifts', 'taste-mood', 'sweet']                                                                                                                                                                                                   | ['577.7', '53.0', '149.0', '19.0', '14.0', '67.0', '21.0'] |        11 |               9 |            5 |          577.7 |              53 |         149 |           19 |            14 |                  67 |                  21 |
 | 275032 |        25 | ['lactose', '30-minutes-or-less', 'time-to-make', 'course', 'main-ingredient', 'cuisine', 'preparation', 'occasion', 'south-west-pacific', 'desserts', 'fruit', 'australian', 'easy', 'beginner-cook', 'dinner-party', 'summer', 'dietary', 'gluten-free', 'seasonal', 'egg-free', 'free-of-something', 'pears', 'taste-mood', 'sweet'] | ['386.9', '0.0', '347.0', '0.0', '1.0', '0.0', '33.0']     |         8 |               9 |            5 |          386.9 |               0 |         347 |            0 |             1 |                   0 |                  33 |
+
 
 ## Framing a Prediction Problem
 

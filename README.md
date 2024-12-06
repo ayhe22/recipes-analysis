@@ -62,7 +62,6 @@ After all steps were completed, the cleaned dataframe appears as follows:
 ### Univariate Analysis
 
 First, I performed univariate analysis on single variables in the dataset:
-
 <iframe
   src="assets/calorie_dist.html"
   width="800"

@@ -48,6 +48,7 @@ To aid in my analysis, I performed the following data cleaning steps on the two 
 After all steps were completed, the cleaned dataframe appears as follows:
 
 <div class="table-wrapper" markdown="block">
+
 |     id |   minutes |   n_steps |   n_ingredients |   avg_rating |   num_calories |   total_fat_pdv |   sugar_pdv |   sodium_pdv |   protein_pdv |   saturated_fat_pdv |   carbohydrates_pdv |
 |-------:|----------:|----------:|----------------:|-------------:|---------------:|----------------:|------------:|-------------:|--------------:|--------------------:|--------------------:|
 | 275022 |        50 |        11 |               7 |            3 |          386.1 |              34 |           7 |           24 |            41 |                  62 |                   8 |
@@ -55,6 +56,7 @@ After all steps were completed, the cleaned dataframe appears as follows:
 | 275026 |        45 |         7 |               9 |            3 |          326.6 |              30 |          12 |           27 |            37 |                  51 |                   5 |
 | 275030 |        45 |        11 |               9 |            5 |          577.7 |              53 |         149 |           19 |            14 |                  67 |                  21 |
 | 275032 |        25 |         8 |               9 |            5 |          386.9 |               0 |         347 |            0 |             1 |                   0 |                  33 |
+
 </div>
 
 ## Framing a Prediction Problem

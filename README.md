@@ -1,7 +1,7 @@
 # An Analysis of Recipe Nutrition
 Annie He || anniehe@umich.edu || EECS 398-003: Practical Data Science
 
-## Introduction
+### Introduction
 
 In this project, I combined two datasets scraped from [food.com](food.com), a popular online collection of recipes submitted by home cooks and celebrity chefs alike, using a subset of all recipes from the website submitted between January 2008 and December 2018. The first dataset, focusing on the recipe itself, contains comprehensive information about the submitted recipes, such as detailed cooking instructions and nutritional values. The second dataset includes ratings and reviews of these recipes, providing information on how well they were received by the website's users. The datasets were merged using common recipe IDs, allowing me to examine recipe information and user interaction data in parallel.
 
@@ -25,12 +25,12 @@ Dataset 2, which contains user interaction data, has **731927 rows**, representi
 
 The two datasets were cleaned and merged for further analysis.
 
-## Data Cleaning & Exploratory Data Analysis
+### Data Cleaning & Exploratory Data Analysis
 
 
 
-## Framing a Prediction Problem
+### Framing a Prediction Problem
 
-## Baseline Model
+### Baseline Model
 
-## Final Model
+### Final Model

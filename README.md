@@ -70,6 +70,8 @@ First, I performed univariate analysis on single variables in the dataset:
 ></iframe>
 In this visualization, the distribution of calories is clearly right-skewed. In fact, in the raw dataset, the `calories` column had outliers all the way up to 45609 calories. Since this number seems incredibly unrealistic for a normal recipe (the average adult consumes about 2000-3000 calories per day), I decided to exclude all recipes with calorie values that were 5 or more standard deviations above the mean, and the resulting plot is shown above. All following analyses will be performed with this abbreviated dataset that excludes these dramatic outliers.
 
+Maybe adding more text will fix the problem. but idk dude
+
 ## Framing a Prediction Problem
 
 ## Baseline Model

@@ -46,8 +46,9 @@ To aid in my analysis, I performed the following data cleaning steps on the two 
     * `carbohydrates_pdv`: Carbohydrates (PDV)
 
 After all steps were completed, the cleaned dataframe appears as follows:
+
 |     id |   minutes |   n_steps |   n_ingredients |   avg_rating |   num_calories |   total_fat_pdv |   sugar_pdv |   sodium_pdv |   protein_pdv |   saturated_fat_pdv |   carbohydrates_pdv |
-| -------: | ----------: | ----------: | ----------------: | -------------: | ---------------: | ----------------: | ------------: | -------------: | --------------: | --------------------: | --------------------: |
+|-------:|----------:|----------:|----------------:|-------------:|---------------:|----------------:|------------:|-------------:|--------------:|--------------------:|--------------------:|
 | 275022 |        50 |        11 |               7 |            3 |          386.1 |              34 |           7 |           24 |            41 |                  62 |                   8 |
 | 275024 |        55 |         6 |               8 |            3 |          377.1 |              18 |         208 |           13 |            13 |                  30 |                  20 |
 | 275026 |        45 |         7 |               9 |            3 |          326.6 |              30 |          12 |           27 |            37 |                  51 |                   5 |

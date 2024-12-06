@@ -25,7 +25,9 @@ Dataset 2, which contains user interaction data, has **731927 rows**, representi
 
 The two datasets were cleaned and merged for further analysis.
 
-## Data Cleaning and Exploratory Data Analysis
+## Data Cleaning & Exploratory Data Analysis
+
+
 
 ## Framing a Prediction Problem
 

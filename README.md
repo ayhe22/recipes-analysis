@@ -45,7 +45,7 @@ To aid in my analysis, I performed the following data cleaning steps on the two 
     * `saturated_fat_pdv`: Saturated Fat (PDV)
     * `carbohydrates_pdv`: Carbohydrates (PDV)
 
-After all steps were completed, the cleaned dataframe appears as follows:
+After all steps were completed, the head of the cleaned dataframe appears as follows:
 
 <div class="table-wrapper" markdown="block">
 
@@ -129,8 +129,12 @@ In this dataset, the only missing values were found in the `avg_rating` column. 
 
 ## Framing a Prediction Problem
 
-My model will try to predict **the number of calories in a recipe**; since the number of calories is a continuous numeric variable, this is a regression problem. As such, the metric I'll be using to evaluate the model's effectiveness is the **Mean Squared Error(MSE)** on the test data (after performing a train-test split on the current dataset). MSE will allow me to evaluate how far my model's predictions are from the true values, while also avoiding a model that overfits to the training data.
+My model will try to predict **the number of calories in a recipe**. In my exploratory data analysis, I was mainly interested in exploring the distribution of calories for different recipes, as well as how calories relates to other variables in the dataset; this information is important in deciding if a recipe is nutritionally dense enough to consider making, especially for someone with limited ingredients or time. Since the number of calories is a continuous numeric variable, this is a regression problem. As such, the metric I'll be using to evaluate the model's effectiveness is the **Mean Squared Error (MSE)** on the test data (after performing a train-test split on the current dataset). MSE will allow me to evaluate how far my model's predictions are from the true values, while also avoiding a model that overfits to the training data.
+
+At the time of prediction, it's likely that I'll know information about the recipe preparation/procedure itself, as well as any tags the recipe creator chooses to include on their website. However, if I don't know the number of calories yet (my response variable), then it's unlikely that I'll know information about other nutritional values (fat, sodium, etc), so these variables will not be used in my prediction. Finally, because ratings are given on completed recipes that provide nutritional information, it's unlikely that I'll be able to use user ratings to predict the number of calories in the dataset. Therefore, the columns I'll be using in my prediction are `minutes`, `tags`, `n_steps`, and `n_ingredients`.
 
 ## Baseline Model
+
+
 
 ## Final Model

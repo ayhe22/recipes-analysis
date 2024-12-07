@@ -112,11 +112,15 @@ Both groups show a visible right skew for number of calories, which makes sense 
 
 The previous bivariate analysis (involving recipe time vs calories) was intriguing, so I decided to perform a similar grouped analysis on all columns in the dataset. Again, I split the data based on whether or not a recipe required more than 35 minutes, storing this information in a column titled `above_avg_min`; this column took on the value "Yes" if a recipe's length was >35 minutes, and "No" if a recipe's length was ≤35 minutes. Next, I grouped by this new `above_avg_min` column and used the mean function to aggregate the data:
 
+# TODO: FINISH THIS
+
 ### Imputation
 
 In this dataset, the only missing values were found in the `avg_rating` column. As discussed in the data cleaning steps, these values make sense for the data: if a recipe was posted to the site but did not receive any ratings from users, then there would be no average rating value. Therefore, I decided not to imputate any values in this column.
 
 ## Framing a Prediction Problem
+
+My model will try to predict **the number of calories in a recipe**; since the number of calories is a continuous numeric variable, this is a regression problem. As such, the metric I'll be using to evaluate the model's effectiveness is the **Mean Squared Error(MSE)** on the test data (after performing a train-test split on the current dataset). MSE will allow me to evaluate how far my model's predictions are from the true values, while also avoiding a model that overfits to the training data.
 
 ## Baseline Model
 

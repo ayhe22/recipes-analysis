@@ -88,6 +88,29 @@ Finally, while not directly related to the central question of the analysis, I l
 ></iframe>
 The distribution of average ratings is significantly right-skewed, with the vast majority of recipes having an average rating of 4 stars or higher (out of 5 possible stars). Overall, it seems that [food.com](food.com) is a great source for new recipes, since the users seem to enjoy what they've made from the site.
 
+### Bivariate Analysis
+
+In addition to the univariate analyses, I also performed analyzed bivariate relationships between different columns in the dataset. First, I looked at the relationship between the number of steps in a recipe and the number of calories:
+<iframe
+  src="assets/steps_v_cals.html"
+  width="650"
+  height="400"
+  frameborder="0"
+></iframe>
+There appears to be a slight negative correlation between steps and calories, with recipes that involve more steps often having lower caloric value. From an nutritional perspective, it seems that these complex recipes require a lot of effort but don't result in a lot of calories, so they might not be a great fit for someone looking for a more efficient meal. Overall, however, while there are some slight patterns in the data, there doesn't appear to be an overly strong relationship between steps and calories.
+
+I also analyzed the relationship between recipe time and calories. To do so, I calculated the median time required for a recipe (35 minutes), then split the data based on whether or not a recipe required more than 35 minutes. The distributions of these two groups are visualized below:
+<iframe
+  src="assets/time_v_cals.html"
+  width="650"
+  height="400"
+  frameborder="0"
+></iframe>
+Both groups show a visible right skew for number of calories, which makes sense given the univariate analysis of calories as a whole. It seems that on average, recipes that require more than 35 minutes have slightly higher average calories, as compared to recipes requiring at most 35 minutes.
+
+### Grouped Analysis
+
+
 ## Framing a Prediction Problem
 
 ## Baseline Model

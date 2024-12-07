@@ -94,16 +94,16 @@ In addition to the univariate analyses, I also performed analyzed bivariate rela
 <iframe
   src="assets/steps_v_cals.html"
   width="650"
-  height="350"
+  height="400"
   frameborder="0"
 ></iframe>
 There appears to be a slight negative correlation between steps and calories, with recipes that involve more steps often having lower caloric value. From an nutritional perspective, it seems that these complex recipes require a lot of effort but don't result in a lot of calories, so they might not be a great fit for someone looking for a more efficient meal. Overall, however, while there are some slight patterns in the data, there doesn't appear to be an overly strong relationship between steps and calories.
 
-I also analyzed the relationship between recipe time and calories. To do so, I calculated the median time required for a recipe (35 minutes), then split the data based on whether or not a recipe required more than 35 minutes. The distributions of these two groups are visualized below:
+I also analyzed the relationship between recipe time and calories. To do so, I calculated the median time required for a recipe (35 minutes), then split the data based on whether or not a recipe required more than 35 minutes; the median was used because the data for recipe time was incredibly right-skewed, making it a better measure of centrality than the mean. The distributions of these two groups are visualized below:
 <iframe
   src="assets/time_v_cals.html"
   width="650"
-  height="300"
+  height="400"
   frameborder="0"
 ></iframe>
 Both groups show a visible right skew for number of calories, which makes sense given the univariate analysis of calories as a whole. It seems that on average, recipes that require more than 35 minutes have slightly higher average calories, as compared to recipes requiring at most 35 minutes.
@@ -112,7 +112,12 @@ Both groups show a visible right skew for number of calories, which makes sense 
 
 The previous bivariate analysis (involving recipe time vs calories) was intriguing, so I decided to perform a similar grouped analysis on all columns in the dataset. Again, I split the data based on whether or not a recipe required more than 35 minutes, storing this information in a column titled `above_avg_min`; this column took on the value "Yes" if a recipe's length was >35 minutes, and "No" if a recipe's length was ≤35 minutes. Next, I grouped by this new `above_avg_min` column and used the mean function to aggregate the data:
 
-# TODO: FINISH THIS
+| **above_median_time**   |   n_steps |   n_ingredients |   avg_rating |   num_calories |   total_fat_pdv |   sugar_pdv |   sodium_pdv |   protein_pdv |   saturated_fat_pdv |   carbohydrates_pdv |
+|:--------------------|----------:|----------------:|-------------:|---------------:|----------------:|------------:|-------------:|--------------:|--------------------:|--------------------:|
+| **Yes**                 |  12.2443  |        10.4308  |      4.60939 |        461.064 |         34.5834 |     66.6108 |      30.2973 |       38.4853 |             43.8126 |             14.5587 |
+| **No**                  |   8.01075 |         8.03359 |      4.64085 |        339.714 |         25.9017 |     52.6939 |      24.5882 |       25.6901 |             30.8715 |             10.6982 |
+
+Recipes that took more than 35 minutes tended to have more steps and ingredients than recipes that took at most 35 minutes, with both groups having similar average ratings. Interestingly, from a nutritional perspective, recipes that took more than 35 minutes had higher mean values for calories, fat, sugar, sodium, protein, saturated fat, and carbohydrates. 
 
 ### Imputation
 

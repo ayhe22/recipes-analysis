@@ -110,7 +110,7 @@ Both groups show a visible right skew for number of calories, which makes sense 
 
 ### Grouped Analysis
 
-The previous bivariate analysis (involving recipe time vs calories) was intriguing, so I decided to perform a similar grouped analysis on all columns in the dataset. Again, I split the data based on whether or not a recipe required more than 35 minutes, storing this information in a column titled `above_avg_min`; this column took on the value "Yes" if a recipe's length was >35 minutes, and "No" if a recipe's length was ≤35 minutes. Next, I grouped by this new `above_avg_min` column and used the mean function to aggregate the data:
+The previous bivariate analysis (involving recipe time vs calories) was intriguing, so I decided to perform a similar grouped analysis on all columns in the dataset. Again, I split the data based on whether or not a recipe required more than 35 minutes, storing this information in a column titled `above_median_time`; this column took on the value "Yes" if a recipe's length was >35 minutes, and "No" if a recipe's length was ≤35 minutes. Next, I grouped by this new `above_median_time` column and used the mean function to aggregate the data:
 
 | **above_median_time**   |   n_steps |   n_ingredients |   avg_rating |   num_calories |   total_fat_pdv |   sugar_pdv |   sodium_pdv |   protein_pdv |   saturated_fat_pdv |   carbohydrates_pdv |
 |:--------------------|----------:|----------------:|-------------:|---------------:|----------------:|------------:|-------------:|--------------:|--------------------:|--------------------:|

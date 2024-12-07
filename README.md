@@ -1,4 +1,4 @@
-# An Analysis of Recipe Nutrition
+# Analysis of Recipe Nutrition
 Annie He || anniehe@umich.edu || EECS 398-003: Practical Data Science
 
 ## Introduction

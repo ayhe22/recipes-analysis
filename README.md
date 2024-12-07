@@ -75,7 +75,6 @@ I also looked at the distribution of ingredient number in each recipe:
   src="assets/ingredients_dist.html"
   width="800"
   height="600"
-  frameborder="0"
 ></iframe>
 The distribution of the number of ingredients required is closer to a normal distribution, but still remains skewed to the right. Most of the recipes seem to require 10 or less ingredients, which seem very reasonable for home-cooked recipes.
 

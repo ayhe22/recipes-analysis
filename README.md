@@ -61,7 +61,7 @@ After all steps were completed, the cleaned dataframe appears as follows:
 
 ### Univariate Analysis
 
-First, I performed univariate analysis on single variables in the dataset:
+First, I performed univariate analysis on the number of calories in each recipe:
 <iframe
   src="assets/calorie_dist.html"
   width="800"
@@ -70,7 +70,23 @@ First, I performed univariate analysis on single variables in the dataset:
 ></iframe>
 In this visualization, the distribution of calories is clearly right-skewed. In fact, in the raw dataset, the `calories` column had outliers all the way up to 45609 calories. Since this number seems incredibly unrealistic for a normal recipe (the average adult consumes about 2000-3000 calories per day), I decided to exclude all recipes with calorie values that were 5 or more standard deviations above the mean, and the resulting plot is shown above. All following analyses will be performed with this abbreviated dataset that excludes these dramatic outliers.
 
-Maybe adding more text will fix the problem. but idk dude
+I also looked at the distribution of ingredient number in each recipe:
+<iframe
+  src="assets/ingredients_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+The distribution of the number of ingredients required is closer to a normal distribution, but still remains skewed to the right. Most of the recipes seem to require 10 or less ingredients, which seem very reasonable for home-cooked recipes.
+
+Finally, while not directly related to the central question of the analysis, I looked at the distribution of average ratings for each recipe:
+<iframe
+  src="assets/ratings_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+The distribution of average ratings is significantly right-skewed, with the vast majority of recipes having an average rating of 4 stars or higher (out of 5 possible stars). Overall, it seems that [food.com](food.com) is a great source for new recipes, since the users seem to enjoy what they've made from the site.
 
 ## Framing a Prediction Problem
 

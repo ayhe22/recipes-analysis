@@ -1,4 +1,3 @@
-# Analyzing Online Recipes
 Annie He || anniehe@umich.edu || EECS 398-003: Practical Data Science
 
 ## Introduction

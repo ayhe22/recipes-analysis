@@ -1,5 +1,5 @@
 # Analysis of Recipe Nutrition
-Annie He || anniehe@umich.edu || EECS 398-003: Practical Data Science
+Annie He || anniehe@umich.edu || EECS 398-003 - Practical Data Science
 
 ## Introduction
 
@@ -137,14 +137,14 @@ At the time of prediction, it's likely that I'll know information about the reci
 
 For the baseline model, I used a Linear Regression model to predict `calories` using the features `minutes`, `n_steps`, and `n_ingredients`. These are three of the four features known to us at the time of prediction; since the `tags` feature contains more complicated information about the recipes, I left it out in the baseline model to see how the other features alone could inform the model. All three features are quantitative, and I applied the `StandardScaler` Transformer to each feature so that they can be more easily compared with each other.
 
-I performed a train-test split on the sample dataset to evaluate how the model performs on unseen data. In addition, because the `calories` feature has many high outliers (as discussed above), I again limited the data to include only recipes where `calories` were within 5 standard deviations of the mean. After fitting the model to the training data, I analyzed the performance on both testing and training data using MSE; since the model used was a Linear Regression model, I also used the coefficient of determination, R-squared, to analyze the quality of the linear fit. These values were calculated as follows:
+I performed a train-test split on the sample dataset to evaluate how the model performs on unseen data. In addition, because the `calories` feature has many high outliers (as discussed above), I again limited the data to include only recipes where `calories` were within 5 standard deviations of the mean. After fitting the model to the training data, I analyzed the performance on both testing and training data using MSE; I also used the coefficient of determination, R-squared, to analyze the quality of the linear fit. These values were calculated as follows:
 
 - Training Data: MSE = 140570.530019, R-squared = 0.041212
 - Testing Data: MSE = 146165.446494, R-squared = 0.046236
 
 This model is... pretty bad! For the testing data, the R-squared coefficient was about 0.046, meaning that the model only explains about 4.6% of the variance in the data. Ideally, the model would be able to explain as close to 100% of the variance as possible, so it is not performing well at all. The MSE is also quite high on the testing data as well, again indicating that the model is performing poorly: in a well-performing model, MSE should be as close to 0 as possible on the testing data. One (very small) silver lining, however, is that the MSE and R-squared values appear to be very similar in the training and testing data, so the model is not overfitting to noise in the training data while exclusively performing poorly on the unseen testing data.
 
-The model's performance is disappointing, but it also isn't super surprising: from the exploratory data analysis earlier, there didn't seem to be clear relationships between calories, ingredients, and minutes for each recipe. Therefore, while this is most of the limited information known at the time of prediction, it makes sense that it is not entirely helpful in predicting the number of calories.
+The model's performance is disappointing, but it also isn't super surprising: from the exploratory data analysis earlier, there didn't seem to be clear (linear) relationships between calories, ingredients, and minutes for each recipe. Therefore, while the chosen features encompass most of the limited information known at the time of prediction, it makes sense that they are not entirely helpful in predicting the number of calories.
 
 ## Final Model
 

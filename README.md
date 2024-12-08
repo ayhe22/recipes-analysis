@@ -154,6 +154,8 @@ Before utilizing any of the information in `tags` for the model, I conducted som
 
 Next, I added new columns to my sample dataset for all 5 tags to represent whether each recipe had the tag or not. After this step, the new sample dataframe looks like this,
 
+<div class="table-wrapper" markdown="block">
+
 |   minutes |   n_steps |   n_ingredients |   low_cal |   main_dish |   low_something |   healthy |   dietary |
 |----------:|----------:|----------------:|----------:|------------:|----------------:|----------:|----------:|
 |        50 |        11 |               7 |         0 |           1 |               0 |         0 |         1 |
@@ -161,6 +163,8 @@ Next, I added new columns to my sample dataset for all 5 tags to represent wheth
 |        45 |         7 |               9 |         1 |           1 |               1 |         0 |         1 |
 |        45 |        11 |               9 |         0 |           0 |               0 |         0 |         0 |
 |        25 |         8 |               9 |         0 |           0 |               0 |         0 |         1 |
+
+</div>
 
 which I used to create a new train-test split to fit my updated model.
 

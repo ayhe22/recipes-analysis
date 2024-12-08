@@ -1,5 +1,5 @@
-# Analysis of Recipe Nutrition
-Annie He || anniehe@umich.edu || EECS 398-003 - Practical Data Science
+# Analyzing Online Recipes
+Annie He || anniehe@umich.edu || EECS 398-003: Practical Data Science
 
 ## Introduction
 
@@ -135,16 +135,40 @@ At the time of prediction, it's likely that I'll know information about the reci
 
 ## Baseline Model
 
-For the baseline model, I used a Linear Regression model to predict `calories` using the features `minutes`, `n_steps`, and `n_ingredients`. These are three of the four features known to us at the time of prediction; since the `tags` feature contains more complicated information about the recipes, I left it out in the baseline model to see how the other features alone could inform the model. All three features are quantitative, and I applied the `StandardScaler` Transformer to each feature so that they can be more easily compared with each other.
+For the baseline model, I used a linear regression model to predict `calories` using the features `minutes`, `n_steps`, and `n_ingredients`. These are three of the four features known to us at the time of prediction; since the `tags` feature contains more complicated, categorical information about the recipes, I left it out in the baseline model to see how the other features alone could inform the model. All three features are quantitative, and I applied the `StandardScaler` Transformer to each feature so that they can be more easily compared with each other.
 
 I performed a train-test split on the sample dataset to evaluate how the model performs on unseen data. In addition, because the `calories` feature has many high outliers (as discussed above), I again limited the data to include only recipes where `calories` were within 5 standard deviations of the mean. After fitting the model to the training data, I analyzed the performance on both testing and training data using MSE; I also used the coefficient of determination, R-squared, to analyze the quality of the linear fit. These values were calculated as follows:
 
-- Training Data: MSE = 140570.530019, R-squared = 0.041212
-- Testing Data: MSE = 146165.446494, R-squared = 0.046236
+- Training Data: MSE = 139586.498618, R-squared = 0.044421
+- Testing Data: MSE = 149812.011900, R-squared = 0.032617
 
-This model is... pretty bad! For the testing data, the R-squared coefficient was about 0.046, meaning that the model only explains about 4.6% of the variance in the data. Ideally, the model would be able to explain as close to 100% of the variance as possible, so it is not performing well at all. The MSE is also quite high on the testing data as well, again indicating that the model is performing poorly: in a well-performing model, MSE should be as close to 0 as possible on the testing data. One (very small) silver lining, however, is that the MSE and R-squared values appear to be very similar in the training and testing data, so the model is not overfitting to noise in the training data while exclusively performing poorly on the unseen testing data.
+This model is... pretty bad! For the testing data, the R-squared coefficient was about 0.033, meaning that the model only explains about 3.3% of the variance in the data. Ideally, the model would be able to explain as close to 100% of the variance as possible, so it is not performing well at all. The MSE is also quite high on the testing data as well, again indicating that the model is performing poorly: in a well-performing model, MSE should be as close to 0 as possible on the testing data. One (very small) silver lining, however, is that the MSE and R-squared values appear to be similar in the training and testing data, so the model is not overfitting to noise in the training data while exclusively performing poorly on the unseen testing data.
 
-The model's performance is disappointing, but it also isn't super surprising: from the exploratory data analysis earlier, there didn't seem to be clear (linear) relationships between calories, ingredients, and minutes for each recipe. Therefore, while the chosen features encompass most of the limited information known at the time of prediction, it makes sense that they are not entirely helpful in predicting the number of calories.
+The model's performance is disappointing, but it also isn't super surprising: from the exploratory data analysis earlier, there didn't seem to be clear relationships between calories, ingredients, and minutes for each recipe. Therefore, while the chosen features encompass most of the limited information known at the time of prediction, it makes sense that they are not entirely helpful in predicting the number of calories.
 
 ## Final Model
 
+In the final model, I continued using the `minutes`, `n_steps`, and `n_ingredients` to inform my analysis, while also adding the `tags` feature (categorical) to improve the model's performance. The `tags` feature contains many keywords that users of the [food.com](food.com) website can utilize to filter recipes; therefore, it's possible that the tags for a recipe may provide further information to help improve the predictive model. 
+
+Before utilizing any of the information in `tags` for the model, I conducted some additional exploratory data analysis on the column, discovering that there were 549 unique tags used across all recipes. I then looked through the top 30 tags to identify any that seemed like good predictors of `calories` while also being well-represented among all recipes in the dataset. From these, I selected 5 tags to add to my analysis: `dietary`, `low-in-something`, `healthy`, `low-calorie`, and `main-dish`. The first four tags all seem to have some relation to health and calorie count, while the last tag may be indicative of a more substantial meal, so they might provide further information for the predictive model.
+
+Next, I added new columns to my sample dataset for all 5 tags to represent whether each recipe had the tag or not. After this step, the new sample dataframe looks like this,
+
+|   minutes |   n_steps |   n_ingredients |   low_cal |   main_dish |   low_something |   healthy |   dietary |
+|----------:|----------:|----------------:|----------:|------------:|----------------:|----------:|----------:|
+|        50 |        11 |               7 |         0 |           1 |               0 |         0 |         1 |
+|        55 |         6 |               8 |         0 |           0 |               0 |         1 |         1 |
+|        45 |         7 |               9 |         1 |           1 |               1 |         0 |         1 |
+|        45 |        11 |               9 |         0 |           0 |               0 |         0 |         0 |
+|        25 |         8 |               9 |         0 |           0 |               0 |         0 |         1 |
+
+which I used to create a new train-test split to fit my updated model.
+
+I also wanted to see if there were any possible transformations of my numerical features from the baseline model that would increase this model's performance. Since there didn't seem to be any linear relationships between `minutes`, `n_steps`, `n_ingredients`, and calories, I wondered if a polynomial transformer might be more effective. Therefore, I conducted a hyperparameter search for the best degree for a `PolynomialFeatures` transformer on all three of the above numerical columns with `GridSearchCV`, testing all possible degrees from 1-20 using 5-fold cross-validation. The best polynomial degree for `minutes` and `n_ingredients` turned out to be 1, so no polynomial transformations were needed, but the best degree for `n_steps` was 3. Therefore, in my final model, I used `PolynomialFeatures` on the `n_steps` column with a degree of 3.
+
+Finally, from my exploratory data analysis, I'd seen that the `minutes` column was skewed right, even more so than the other quantitative columns. Therefore, I applied a `QuantileTransformer` transformer to the `minutes` column in my final linear regression model. After these updates, I re-evaluated the final model's performance:
+
+- Training Data: MSE = 134381.197452, R-squared = 0.090075
+- Testing Data: MSE = 137722.648585, R-squared = 0.082164
+
+This model is not the greatest either: even after the transformations and additional columns used in the analysis, the R-squared value for the test data was about 0.082, meaning that only 8.2% of the variance in the data is explained by the model. Despite this, the R-squared value is more than double that of the baseline model, and the MSE decreased significantly as well (especially for the training data). The model again performs similarly between the training and test data, again suggesting that it is not overfitting to the training data while sacrificing performance on the testing data. Therefore, while the final model ends up being a poor predictor of the number of calories, it is still a big improvement over the baseline model.
